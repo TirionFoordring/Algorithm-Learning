@@ -1,8 +1,8 @@
 
 # Algorithm Learning Learning Notes
 ### Lesson1: Basic Algorithm
-**(1)Quick Sort**
-Average performance: $O(nlogn)$
+**(1)Quick Sort**<br>
+Average performance: $O(nlogn)$<br>
 Worst-case performance: $O(n^2)$
 ```java
 import java.io.*;  
@@ -52,8 +52,8 @@ public class QuickSort {
 }
 ```
 
-**(2)Merge Sort**
-Avergae performance: $O(nlogn)$
+**(2)Merge Sort**<br>
+Avergae performance: $O(nlogn)$<br>
 Worst performance: $O(nlogn)$
 ```java
 import java.io.BufferedReader;  
