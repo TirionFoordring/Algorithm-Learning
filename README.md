@@ -1,5 +1,5 @@
 
-# Algorithm Learning Learning Notes
+# Algorithm Learning Notes
 ### Lesson1: Basic Algorithm
 **(1)Quick Sort**<br>
 Average performance: $O(nlogn)$<br>
