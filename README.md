@@ -1,4 +1,3 @@
-
 # Algorithm Learning Notes
 ### Lesson1: Basic Algorithm
 **(1)Quick Sort**<br>
