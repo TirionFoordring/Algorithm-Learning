@@ -7,8 +7,10 @@ public class Main {
     // 初始化测试用例.
     public static List<TestCase> testCases = new ArrayList<TestCase>();
     private static void initializeTestCases(){
+        testCases.clear();
         testCases.add(new TestCase(LocalDateTime.of(2025, 2, 16, 10, 0), 3));
         testCases.add(new TestCase(LocalDateTime.of(2025, 2, 16, 10, 0), 1));
+        testCases.add(new TestCase(LocalDateTime.of(2025, 2, 16, 11, 0), 1));
         testCases.add(new TestCase(LocalDateTime.of(2024, 12, 31, 23, 59), 2));
         testCases.add(new TestCase(LocalDateTime.of(2025, 1, 1, 0, 0), 4));
         testCases.add(new TestCase(LocalDateTime.of(2025, 2, 16, 10, 0), 5));
@@ -16,16 +18,26 @@ public class Main {
         testCases.add(new TestCase(LocalDateTime.of(2025, 1, 1, 0, 0), 7));
         testCases.add(new TestCase(LocalDateTime.of(2025, 2, 16, 10, 0), 8));
         testCases.add(new TestCase(LocalDateTime.of(2024, 12, 31, 23, 59), 9));
-        testCases.add(new TestCase(LocalDateTime.of(2025, 1, 1, 0, 0), 10));
+        testCases.add(new TestCase(LocalDateTime.of(2025, 1, 14, 12, 0), 8));
+        testCases.add(new TestCase(LocalDateTime.of(2025, 1, 1, 0, 0), 8));
     }
 
-    // compare方法: 用于比较两个测试案例的大小关系, 先比较订单时间dateTime, 再比较订单桌号tableId.
-    public static int compare(TestCase CaseA, TestCase CaseB){
+    // sortByDateTime方法: 先比较订单时间dateTime, 再比较订单桌号tableId.
+    public static int sortByDateTime(TestCase CaseA, TestCase CaseB){
         int dateTimeCompare = CaseA.getDateTime().compareTo(CaseB.getDateTime());
         if(dateTimeCompare != 0)
             return dateTimeCompare;
         else
             return CaseA.getTableId().compareTo(CaseB.getTableId());
+    }
+
+    // sortByTableId方法: 先比较订单桌号tableId, 再比较订单时间dateTime.
+    public static int sortByTableId(TestCase CaseA, TestCase CaseB){
+        int tableIdCompare = CaseA.getTableId().compareTo(CaseB.getTableId());
+        if(tableIdCompare != 0)
+            return tableIdCompare;
+        else
+            return CaseA.getDateTime().compareTo(CaseB.getDateTime());
     }
 
     // printTestCases方法: 用于展示排序后的数组.
@@ -35,17 +47,26 @@ public class Main {
     }
 
     public static void main(String[] args) {
+
+        // 归并排序
         initializeTestCases();
-
-        if(testCases == null || testCases.isEmpty()){
-            System.out.println("Test cases is not existed.");
-        }
-
-        if(testCases.size() == 1){
-            System.out.println(testCases.get(0).show());
-        }
-
         MergeSort.mergeSort(testCases, 0, testCases.size() - 1);
+        System.out.println("(1) The result of MergeSort: ");
         printTestCases();
+        System.out.println();
+
+        // 快速排序
+        initializeTestCases();
+        QuickSort.quickSort(testCases, 0, testCases.size() - 1);
+        System.out.println("(2) The result of QuickSort: ");
+        printTestCases();
+        System.out.println();
+
+        // 堆排序
+        initializeTestCases();
+        HeapSort.heapSort(testCases);
+        System.out.println("(3) The result of HeapSort: ");
+        printTestCases();
+        System.out.println();
     }
 }

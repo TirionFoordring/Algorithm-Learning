@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
+// 使用归并排序实现对于测试用例中的所有示例排序.
 public class MergeSort {
-    // 使用归并排序实现对于测试用例中的所有示例排序.
     public static void mergeSort(List<TestCase> testCases, int l, int r){
         if (l >= r) return;
         int mid = (l + r) / 2;
@@ -15,7 +15,7 @@ public class MergeSort {
 
         int i = l, j = mid + 1, k = 0;
         while (i <= mid && j <= r){
-            if (Main.compare(testCases.get(i), testCases.get(j)) < 0)
+            if (Main.sortByDateTime(testCases.get(i), testCases.get(j)) < 0)
                 temp.add(k++, testCases.get(i++));
             else
                 temp.add(k++, testCases.get(j++));

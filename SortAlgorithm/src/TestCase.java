@@ -1,5 +1,6 @@
 import java.time.LocalDateTime;
 
+// 此文件为测试用例的类定义文件
 public class TestCase{
     LocalDateTime dateTime;
     Integer tableId;
