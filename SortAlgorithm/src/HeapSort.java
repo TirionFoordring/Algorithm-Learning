@@ -1,11 +1,12 @@
+import java.util.Comparator;
 import java.util.List;
 
 public class HeapSort {
-    public static void heapSort(List<TestCase> testCases) {
+    public static void heapSort(List<TestCase> testCases, Comparator<TestCase> comparator) {
         int n = testCases.size();
         // 构建大根堆
         for (int i = n / 2 - 1; i >= 0; i--) {
-            heapify(testCases, n, i);
+            heapify(testCases, n, i, comparator);
         }
         // 排序
         for (int i = n - 1; i > 0; i--) {
@@ -15,23 +16,23 @@ public class HeapSort {
             testCases.set(i, temp);
 
             // 调整剩余部分为最大堆
-            heapify(testCases, i, 0);
+            heapify(testCases, i, 0, comparator);
         }
     }
 
     // 将数组调整成一个大根堆
-    private static void heapify(List<TestCase> testCases, int n, int i){
+    private static void heapify(List<TestCase> testCases, int n, int i, Comparator<TestCase> comparator){
         int largest = i;
         int l = 2 * i + 1;
         int r = 2 * i + 2;
 
         // 判断左子节点是否大于根节点.
-        if (l < n && Main.sortByDateTime(testCases.get(largest), testCases.get(l)) < 0){
+        if (l < n && comparator.compare(testCases.get(largest), testCases.get(l)) < 0){
             largest = l;
         }
 
         // 判断右子节点是否大于根节点.
-        if (r < n && Main.sortByDateTime(testCases.get(largest), testCases.get(r)) < 0){
+        if (r < n && comparator.compare(testCases.get(largest), testCases.get(r)) < 0){
             largest = r;
         }
 
@@ -42,7 +43,7 @@ public class HeapSort {
             testCases.set(largest, temp);
 
             // 将下方所有受影响的子树递归调整.
-            heapify(testCases, n, largest);
+            heapify(testCases, n, largest, comparator);
         }
     }
 }
